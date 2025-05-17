@@ -1,189 +1,1450 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hamster Home</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamster Home | The Future of Pet Companionship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
+    :root {
+      --primary: #FFB400; /* Darker yellow for better contrast */
+      --primary-light: #FFD166;
+      --secondary: #4F6F8F; /* Changed to teal-blue that contrasts with yellow but harmonizes */
+      --accent: #24B47E; /* Darker green for better contrast */
+      --dark: #222222; /* Darker text for better contrast */
+      --gray: #555555; /* Darker gray for better readability */
+      --light-gray: #F7F7F9;
+      --white: #FFFFFF;
+      --gradient: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --radius: 12px;
+    }
+    
+    * {
       margin: 0;
-      font-family: 'Nunito', sans-serif;
-      background: linear-gradient(to bottom, #f0f4ff, #e9f5ec);
-      color: #333;
+      padding: 0;
+      box-sizing: border-box;
     }
-
-    header {
-      text-align: center;
-      padding: 4rem 2rem 2rem;
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+      overflow-x: hidden;
+      background-color: var(--light-gray);
+      font-size: 16px;
+      line-height: 1.6;
     }
-
-    header h1 {
-      font-size: 2.8rem;
-      color: #4a90e2;
-      margin-bottom: 1rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto 0.5rem;
-      color: #000;
-    }
-
-    header p .highlight {
-      font-weight: bold;
-      color: #000;
-    }
-
-    header p .highlight .possible {
-      color: #3fb68b;
-    }
-
-    .price-emphasis {
-      font-weight: bold;
-      font-size: 1.1rem;
-      color: #2b7a78;
-      margin-bottom: 2rem;
-    }
-
-    .cta-button {
-      background-color: #3fb68b;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.1rem;
-      border-radius: 2rem;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .cta-button:hover {
-      background-color: #329f7a;
-    }
-
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 4rem 2rem;
+    
+    .container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 20px;
     }
-
+    
+    /* Header */
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .logo .fa-paw {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none; /* Remove bullets */
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .btn {
+      display: inline-flex; /* Changed to inline-flex */
+      justify-content: center; /* Center content horizontally */
+      align-items: center; /* Center content vertically */
+      background: var(--gradient);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 48px; /* Fixed height for consistency */
+      min-width: 140px; /* Minimum width for consistency */
+      font-size: 1rem; /* Consistent font size for all buttons */
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 180, 0, 0.3);
+    }
+    
+    .btn.secondary {
+      background: var(--secondary);
+      box-shadow: 0 10px 20px rgba(79, 111, 143, 0.2);
+      color: var(--white); /* Ensuring text is white for readability */
+    }
+    
+    .btn.secondary:hover {
+      box-shadow: 0 10px 20px rgba(79, 111, 143, 0.4);
+      background: #3E5B75; /* Slightly darker on hover */
+    }
+    
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--dark);
+      cursor: pointer;
+    }
+    
+    /* Mobile navigation menu */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background: var(--white);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      z-index: 99;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease-out;
+    }
+    
+    .mobile-nav.active {
+      transform: translateY(0);
+      display: block;
+    }
+    
+    .mobile-nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .mobile-nav li {
+      margin-bottom: 15px;
+    }
+    
+    .mobile-nav a {
+      display: block;
+      padding: 10px 0;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      border-bottom: 1px solid var(--light-gray);
+      transition: color 0.3s;
+    }
+    
+    .mobile-nav a:hover {
+      color: var(--primary);
+    }
+    
+    .mobile-nav .btn {
+      margin-top: 15px;
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: var(--white);
+      padding: 160px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: url('https://images.unsplash.com/photo-1535241749838-299277b6305f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080') no-repeat;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.05;
+      z-index: 0;
+    }
+    
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-text {
+      flex: 1;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    
+    .hero-title span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: var(--dark); /* Changed from gray to dark for better readability */
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 30px;
+      align-items: center; /* Ensure vertical alignment */
+    }
+    
+    .pricing {
+      display: inline-block;
+      margin-top: 24px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    
+    .price {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+    
+    .hero-image {
+      flex: 1;
+      position: relative;
+    }
+    
+    .hero-img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    
+    .feature-badge {
+      position: absolute;
+      background: var(--white);
+      border-radius: 50px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow);
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap; /* Prevent text wrapping */
+      z-index: 5; /* Ensure badges appear above image */
+    }
+    
+    .badge-icon {
+      width: 30px;
+      height: 30px;
+      background: var(--light-gray);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      flex-shrink: 0; /* Prevent icon from shrinking */
+    }
+    
+    /* Desktop positions */
+    .badge-1 {
+      top: 20px;
+      left: 20px;
+    }
+    
+    .badge-2 {
+      bottom: 30px;
+      left: -30px;
+    }
+    
+    .badge-3 {
+      top: 40%;
+      right: -20px;
+    }
+    
+    .badge-4 {
+      bottom: 20px;
+      right: 20px;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 100px 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      color: var(--dark); /* Changed from gray to dark for better readability */
+      max-width: 700px; /* Increased width for better line length */
+      margin: 0 auto 60px;
+      line-height: 1.6;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
     .feature-card {
-      background-color: #ffffff;
-      border-radius: 1.5rem;
-      padding: 2rem;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
-      transition: transform 0.2s;
-      flex: 1 1 260px;
-      max-width: 270px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
     }
-
+    
     .feature-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
     }
-
-    .feature-card h3 {
-      color: #4a90e2;
-      margin-bottom: 1rem;
-      font-size: 1.4rem;
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--light-gray);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 24px;
     }
-
-    .feature-card p {
-      color: #555;
+    
+    .feature-title {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+    
+    .feature-description {
+      color: var(--dark); /* Changed from gray to dark */
+      line-height: 1.6;
+      font-size: 1.05rem; /* Slightly larger */
+    }
+    
+    /* How it Works */
+    .how-it-works {
+      background: var(--white);
+      padding: 100px 0;
+    }
+    
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 60px;
+      position: relative;
+    }
+    
+    .steps::before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--light-gray);
+      z-index: 1;
+    }
+    
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 250px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .step-number {
+      width: 80px;
+      height: 80px;
+      background: var(--white);
+      border: 2px solid var(--light-gray);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .step-number::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: var(--light-gray);
+      border-radius: 50%;
+      z-index: -1;
+      opacity: 0.3;
+    }
+    
+    .step-title {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    
+    .step-description {
+      color: var(--dark); /* Changed from gray to dark */
+      font-size: 1rem; /* Increased size */
+      line-height: 1.6;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      padding: 100px 0;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+    
+    .testimonial-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      position: relative;
+      padding-left: 20px;
+      border-left: 3px solid var(--primary);
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .author-name {
+      font-weight: 600;
       font-size: 1rem;
     }
-
-    .feature-card video {
-      width: 100%;
-      border-radius: 1rem;
-      margin-top: 1rem;
+    
+    .author-title {
+      color: var(--gray);
+      font-size: 0.8rem;
     }
-
-    footer {
+    
+    /* CTA */
+    .cta {
+      background: var(--gradient);
+      padding: 80px 0;
+      color: var(--white);
       text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
+      border-radius: var(--radius);
+      margin: 80px auto;
+      max-width: 1160px;
     }
-
-    @media (max-width: 768px) {
-      .features {
-        flex-direction: column;
-        align-items: center;
+    
+    .cta-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .cta-subtitle {
+      max-width: 600px;
+      margin: 0 auto 40px;
+      opacity: 0.9;
+    }
+    
+    .cta-btn {
+      background: var(--white);
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--white);
+      padding: 60px 0 30px;
+      text-align: center;
+    }
+    
+    .footer-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .footer-description {
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    
+    .footer-link {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .footer-link:hover {
+      color: var(--primary);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--light-gray);
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .footer-legal {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .footer-legal a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    
+    .footer-legal a:hover {
+      color: var(--primary);
+    }
+    
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow: auto;
+    }
+    
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--radius);
+      max-width: 500px;
+      width: 90%;
+      margin: 10% auto;
+      padding: 40px;
+      position: relative;
+      animation: modalSlideIn 0.3s forwards;
+    }
+    
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
       }
-
-      header h1 {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      border: none;
+      background: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--gray);
+    }
+    
+    .modal-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    
+    .modal-text {
+      color: var(--gray);
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    
+    .waitlist-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .form-label {
+      font-weight: 500;
+    }
+    
+    .form-input {
+      padding: 12px 16px;
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      
+      .steps {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+      }
+      
+      .steps::before {
+        display: none;
+      }
+      
+      .step {
+        max-width: 300px;
+      }
+      
+      /* Add spacing between nav items on narrow screens */
+      #nav-cta {
+        margin-left: 20px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-content {
+        flex-direction: column;
+      }
+      
+      .hero-image {
+        order: -1;
+        margin-bottom: 40px;
+      }
+      
+      /* Modify feature badge visibility and positioning for mobile */
+      .feature-badge {
+        display: flex;
+        position: absolute;
+        max-width: none; /* Remove width constraint to fully contain text */
+        padding: 8px 16px; /* Slightly smaller padding on mobile */
+      }
+      
+      /* Mobile positions - 4 corners */
+      .badge-1 {
+        top: 15px;
+        left: 15px;
+      }
+      
+      .badge-2 {
+        bottom: 15px;
+        left: 15px;
+        right: auto;
+      }
+      
+      .badge-3 {
+        top: 15px;
+        right: 15px;
+        left: auto;
+      }
+      
+      .badge-4 {
+        bottom: 15px;
+        right: 15px;
+        left: auto;
+      }
+      
+      /* Reset nav-cta margin on mobile */
+      #nav-cta {
+        margin-left: 0;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch; /* Full width buttons on mobile */
+        gap: 12px;
+      }
+      
+      .hero-buttons .btn {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      
+      .section-title {
         font-size: 2rem;
       }
-
-      header p {
-        font-size: 1rem;
+      
+      .cta-title {
+        font-size: 2rem;
       }
-
-      .feature-card {
-        max-width: 90%;
+      
+      /* Even smaller screens need more compact badges */
+      .feature-badge {
+        font-size: 0.8rem;
+        padding: 6px 12px;
       }
+      
+      .badge-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Animation */
+    .reveal {
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Added styles for interactive elements */
+    .feature-hover {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      margin: 40px auto;
+      max-width: 900px;
+    }
+    
+    .feature-hover-img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.5s;
+    }
+    
+    .feature-hover-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.7));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      color: white;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    
+    .feature-hover:hover .feature-hover-img {
+      transform: scale(1.05);
+    }
+    
+    .feature-hover:hover .feature-hover-overlay {
+      opacity: 1;
+    }
+    
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 60px auto;
+    }
+    
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gray);
+      font-weight: 500;
+    }
+    
+    .trust-badge i {
+      color: var(--primary);
+    }
+
+    /* Improved audience section */
+    .audience-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .audience-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+    
+    .audience-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .audience-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      color: var(--dark);
+    }
+    
+    .audience-card p {
+      color: var(--dark); /* Improved text contrast */
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+    
+    .audience-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--light-gray);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    /* Social Media Icons */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    
+    .social-icon {
+      color: var(--dark);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    
+    .social-icon:hover {
+      color: var(--primary);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Hamster Home</h1>
-    <p>When it's <span class="highlight">im<span class="possible">possible</span></span> to get a pet, we got you.</p>
-    <p>Connect with a hamster now.</p>
-    <div class="price-emphasis">Only S$X per day!</div>
-    <button class="cta-button">Try Hamster Home</button>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <i class="fas fa-paw"></i>
+          <span>Hamster Home</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#testimonials">Who It's For</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <button id="nav-cta" class="btn">Try it now</button>
+        <button class="hamburger" id="hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-nav" id="mobileNav">
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#testimonials">Who It's For</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+      <button id="mobile-cta" class="btn">Try it now</button>
+    </div>
   </header>
 
-  <section class="features">
-    <div class="feature-card">
-      <h3>Meet a Real Hamster</h3>
-      <p>Your companion is a real, living hamster with its own quirky personality. Every day brings something new and adorable to discover!</p>
-      <video controls muted>
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">A <span>Smarter Way</span> to Connect with Pets</h1>
+          <p class="hero-subtitle">Experience the joy of keeping a real hamster remotely. Created by pet lovers who prioritize animal welfare, our smart technology meets ethical animal care, creating a revolutionary pet experience for urban lifestyles.</p>
+          <div class="hero-buttons">
+            <button id="main-cta" class="btn">Try it now</button>
+            <a href="#how-it-works" class="btn secondary">Learn how it works</a>
+          </div>
+          <p class="pricing">Starting at just <span id="price-amount" class="price">S$0.00</span>/day</p>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Cute hamster in its habitat" class="hero-img">
+          <div class="feature-badge badge-1">
+            <div class="badge-icon"><i class="fas fa-video"></i></div>
+            <span>Live Video</span>
+          </div>
+          <div class="feature-badge badge-2">
+            <div class="badge-icon"><i class="fas fa-utensils"></i></div>
+            <span>Smart Feeding</span>
+          </div>
+          <div class="feature-badge badge-3">
+            <div class="badge-icon"><i class="fas fa-heart"></i></div>
+            <span>Health Monitoring</span>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="feature-card">
-      <h3>No Fuss, Just Fun</h3>
-      <p>We handle all the daily care—from bedding to health checks. All you do is enjoy the connection with your pet.</p>
-      <video controls muted>
-        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+  </section>
+  
+  <div class="trust-badges container">
+    <div class="trust-badge">
+      <i class="fas fa-shield-alt"></i>
+      <span>24/7 Care</span>
     </div>
-
-    <div class="feature-card">
-      <h3>Bond Through Interaction</h3>
-      <p>Speak to your hamster, drop treats, and build a real connection. Follow our bonding guide to be truly recognized by your furry friend.</p>
-      <video controls muted>
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <div class="trust-badge">
+      <i class="fas fa-award"></i>
+      <span>Certified Handlers</span>
     </div>
+    <div class="trust-badge">
+      <i class="fas fa-user-lock"></i>
+      <span>100% Private</span>
+    </div>
+    <div class="trust-badge">
+      <i class="fas fa-rocket"></i>
+      <span>Tech-Forward</span>
+    </div>
+  </div>
 
-    <div class="feature-card">
-      <h3>Relive the Best Moments</h3>
-      <p>Get a daily highlight video showing the cutest, quirkiest parts of your hamster’s day. Because every moment counts.</p>
-      <video controls muted>
-        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+  <section class="features reveal" id="features">
+    <div class="container">
+      <h2 class="section-title">Smart Features for Modern Pet Lovers</h2>
+      <p class="section-subtitle">Experience the future of pet companionship with our intelligent and interactive platform, created by pet lovers who understand your needs.</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3 class="feature-title">Smart Feeding</h3>
+          <p class="feature-description">Schedule or trigger real-time feeding through the app, ensuring your hamster always gets the right nutrition at the right time.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-film"></i>
+          </div>
+          <h3 class="feature-title">Daily Highlights</h3>
+          <p class="feature-description">Our AI captures the cutest and most interesting moments of your hamster's day, creating a daily highlights video you can share with friends.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-broom"></i>
+          </div>
+          <h3 class="feature-title">Automated Cleaning</h3>
+          <p class="feature-description">Our smart habitat maintenance system keeps your pet's environment fresh and hygienic without any effort from you.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3 class="feature-title">Health Monitoring</h3>
+          <p class="feature-description">24/7 vital signs and behavior monitoring with instant alerts if anything seems unusual with your pet.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3 class="feature-title">Live Video Feed</h3>
+          <p class="feature-description">Watch your hamster anytime with high-definition streaming and color night vision that brings you into their world, no matter the time of day or night.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-camera-retro"></i>
+          </div>
+          <h3 class="feature-title">Controllable Camera</h3>
+          <p class="feature-description">Pan, tilt, and zoom your view with our 360° camera system. Get the perfect angle to watch your furry friend from anywhere in their habitat.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="feature-title">Basic Insurance</h3>
+          <p class="feature-description">Every subscription includes basic pet insurance covering routine care and minor health issues at no extra cost, giving you peace of mind.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h3 class="feature-title">Smart Notifications</h3>
+          <p class="feature-description">Get personalized alerts about your hamster's activities, mood, and important moments throughout the day.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cube"></i>
+          </div>
+          <h3 class="feature-title">Augmented Reality</h3>
+          <p class="feature-description">Customize your hamster's habitat with virtual toys and decorations they can interact with in real time through our augmented reality system.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-microphone"></i>
+          </div>
+          <h3 class="feature-title">Two-Way Audio</h3>
+          <p class="feature-description">Listen and talk to your pet with our crystal-clear audio system, creating a real bond despite the distance.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div style="text-align: center; margin-bottom: 3rem;">
-    <button class="cta-button">Try Hamster Home</button>
-    <p class="price-emphasis">Only S$X per day!</p>
-  </div>
+  <section class="ethical-practices reveal">
+    <div class="container">
+      <h2 class="section-title">Created by Pet Lovers, for Pet Lovers</h2>
+      <p class="section-subtitle">At Hamster Home, our commitment to animal welfare drives everything we do. We're more than just a tech platform – we're a community of passionate pet enthusiasts.</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-paw"></i>
+          </div>
+          <h3 class="feature-title">Pet Lovers First</h3>
+          <p class="feature-description">Founded by dedicated pet enthusiasts who understand the deep bond between humans and animals. Our team includes veterinarians, animal behaviorists, and lifelong pet owners.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <h3 class="feature-title">Best Practice Standards</h3>
+          <p class="feature-description">We adhere to the highest standards in animal care, following international guidelines for pet welfare, habitat design, nutrition, and environmental enrichment.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3 class="feature-title">NGO Partnerships</h3>
+          <p class="feature-description">We actively collaborate with animal welfare organizations and seek independent oversight to ensure our operations remain ethical and our practices continuously improve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials reveal" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">Who Hamster Home Is For</h2>
+      <p class="section-subtitle">Perfect for modern lifestyles that desire pet companionship without the traditional limitations.</p>
+      
+      <div class="audience-container">
+        <div class="audience-card">
+          <div class="audience-icon">
+            <i class="fas fa-city"></i>
+          </div>
+          <h3>Urban Apartment Dwellers</h3>
+          <p>Limited space shouldn't mean limited joy. Perfect for those in compact urban apartments where traditional pet ownership might be challenging or restricted.</p>
+        </div>
+        
+        <div class="audience-card">
+          <div class="audience-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h3>Busy Young Professionals</h3>
+          <p>For those under 35 with demanding schedules who want the emotional benefits of pet ownership without compromising their career or social commitments.</p>
+        </div>
+        
+        <div class="audience-card">
+          <div class="audience-icon">
+            <i class="fas fa-head-side-mask"></i>
+          </div>
+          <h3>Allergy Sufferers</h3>
+          <p>Experience all the joy of pet companionship without the physical discomfort. Our remote interaction means zero allergen exposure while maintaining a real connection.</p>
+        </div>
+        
+        <div class="audience-card">
+          <div class="audience-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <h3>Rental Property Residents</h3>
+          <p>Living somewhere with a no-pets policy? Our solution lets you enjoy authentic pet companionship without violating any tenancy agreements.</p>
+        </div>
+        
+        <div class="audience-card">
+          <div class="audience-icon">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <h3>First-time Pet Owners</h3>
+          <p>Curious about pet ownership but not ready for full responsibility? Hamster Home is the perfect introduction to caring for a pet with professional support.</p>
+        </div>
+        
+        <div class="audience-card">
+          <div class="audience-icon">
+            <i class="fas fa-laptop"></i>
+          </div>
+          <h3>Tech Enthusiasts</h3>
+          <p>For those who love cutting-edge technology and unique experiences. Embrace the future of pet companionship with our innovative platform.</p>
+        </div>
+        
+        <div class="audience-card">
+          <div class="audience-icon">
+            <i class="fas fa-child"></i>
+          </div>
+          <h3>Kids Without Pet Permission</h3>
+          <p>When parents say "no pets allowed" but you still want a furry friend! Enjoy the responsibility and joy of pet ownership without changing your home situation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works reveal" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How Hamster Home Works</h2>
+      <p class="section-subtitle">Getting started is simple. Follow these steps to begin your hamster journey.</p>
+      
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Sign Up</h3>
+          <p class="step-description">Create your account and choose from our membership options.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Meet Your Hamster</h3>
+          <p class="step-description">We'll match you with a hamster that fits your preferences.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Download the App</h3>
+          <p class="step-description">Get access to all smart features and controls on your phone.</p>
+        </div>
+        
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Start Bonding</h3>
+          <p class="step-description">Begin interacting and creating memories with your new pet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta reveal" id="pricing">
+    <div class="container">
+      <h2 class="cta-title">Ready to Meet Your Hamster?</h2>
+      <p class="cta-subtitle">Join our waiting list today and be the first to experience the future of pet companionship.</p>
+      <button id="cta-button" class="btn cta-btn">Try it now for S$<span id="price-cta">0.00</span>/day</button>
+    </div>
+  </section>
 
   <footer>
-    &copy; 2025 Hamster Home. All rights reserved.
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-paw"></i>
+          <span>Hamster Home</span>
+        </div>
+        <p class="footer-description">Revolutionizing pet ownership for urban lifestyles through technology and compassionate care.</p>
+        
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+          <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <div class="footer-links">
+          <a href="#features" class="footer-link">Features</a>
+          <a href="#testimonials" class="footer-link">Who It's For</a>
+          <a href="#how-it-works" class="footer-link">How It Works</a>
+          <a href="#pricing" class="footer-link">Pricing</a>
+          <a href="#" class="footer-link">About Us</a>
+          <a href="#" class="footer-link">Contact</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Hamster Home. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
   </footer>
+
+  <!-- Modal -->
+  <div id="waitlist-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <h2 class="modal-title">Join Our Waiting List</h2>
+      <p class="modal-text">Hamster Home is launching soon! Leave your email to be the first to know when we're ready and get early access.</p>
+      <form id="waitlist-form" class="waitlist-form">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" class="form-input" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-input" placeholder="Your email address" required>
+        </div>
+        <button type="submit" class="btn">Join Waiting List</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Random pricing
+    const prices = ['0.80', '1.10', '1.60', '3.30'];
+    const randomPrice = prices[Math.floor(Math.random() * prices.length)];
+    document.getElementById('price-amount').textContent = `S$${randomPrice}`;
+    document.getElementById('price-cta').textContent = randomPrice;
+    
+    // Mobile Navigation Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileCta = document.getElementById('mobile-cta');
+    
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('active');
+      hamburger.innerHTML = mobileNav.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : 
+        '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on nav links
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Add mobile CTA button to modal triggers
+    if (mobileCta) {
+      mobileCta.addEventListener('click', () => {
+        modal.style.display = 'block';
+        mobileNav.classList.remove('active');
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        trackEvent('button_click', { price: randomPrice });
+      });
+    }
+    
+    // Modal functionality
+    const modal = document.getElementById('waitlist-modal');
+    const ctaButtons = [
+      document.getElementById('nav-cta'),
+      document.getElementById('main-cta'),
+      document.getElementById('cta-button')
+    ];
+    const closeButton = document.querySelector('.modal-close');
+    const waitlistForm = document.getElementById('waitlist-form');
+    
+    // Show modal
+    ctaButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        modal.style.display = 'block';
+        // Track button click
+        trackEvent('button_click', { price: randomPrice });
+      });
+    });
+    
+    // Close modal
+    closeButton.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    
+    // Form submission
+    waitlistForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      
+      // Track form submission
+      trackEvent('form_submission', { 
+        price: randomPrice,
+        name: name,
+        email: email 
+      });
+      
+      // Replace form with success message
+      waitlistForm.innerHTML = `
+        <div style="text-align: center;">
+          <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--accent); margin-bottom: 20px;"></i>
+          <h3>Thank You!</h3>
+          <p>We've added you to our waiting list and will notify you when Hamster Home launches.</p>
+        </div>
+      `;
+      
+      // Close modal after delay
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 3000);
+    });
+    
+    // Reveal animations on scroll
+    window.addEventListener('scroll', reveal);
+    
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      const windowHeight = window.innerHeight;
+      const revealPoint = 150;
+      
+      reveals.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowHeight - revealPoint) {
+          element.classList.add('active');
+        }
+      });
+    }
+    
+    // Tracking functions
+    function trackEvent(eventName, data) {
+      console.log(`Event: ${eventName}`, data);
+      // In a real implementation, you would send this data to your analytics service
+      // Example: analytics.track(eventName, data);
+    }
+    
+    // Track page view when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      trackEvent('page_view', { price: randomPrice });
+      // Initialize reveal animation check
+      reveal();
+    });
+  </script>
 </body>
 </html>
