@@ -1328,7 +1328,7 @@
         modal.style.display = 'block';
         mobileNav.classList.remove('active');
         hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-        trackEvent('button_click', { price: randomPrice });
+        trackEvent('button_click', { price: randomPrice, currency: 'SGD' });
       });
     }
     
@@ -1347,7 +1347,7 @@
       button.addEventListener('click', () => {
         modal.style.display = 'block';
         // Track button click
-        trackEvent('button_click', { price: randomPrice });
+        trackEvent('button_click', { price: randomPrice, currency: 'SGD' });
       });
     });
     
@@ -1371,6 +1371,7 @@
       // Track form submission
       trackEvent('form_submission', { 
         price: randomPrice,
+        currency: 'SGD',
         name: name,
         email: email 
       });
@@ -1408,9 +1409,24 @@
       // GA4 Tracking functions
     function trackEvent(eventName, data) {
       console.log(`Event: ${eventName}`, data);
+                 
+      // Combine event name with data
+      const payload = {
+        eventName: eventName,
+        ...data
+      };
       
-      // Send event to Google Analytics 4
-      gtag('event', eventName, data);
+      // Send data to Google Sheets
+      fetch('https://script.google.com/macros/s/AKfycbzKJ2jNLVRGuJoo5WkygwLTSH9aXiPM0-RwlgAkgVwuRnY6jwxyqhKesyUilp6CYcPZmQ/exec', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        mode: 'no-cors'
+      })
+      .then(() => console.log('Data sent to Google Sheets'))
+      .catch(error => console.error('Error sending data to Google Sheets:', error));
     }
     
     // Track page view when page loads
