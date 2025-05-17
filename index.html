@@ -1293,6 +1293,46 @@
     document.getElementById('price-amount').textContent = `S$${randomPrice}`;
     document.getElementById('price-cta').textContent = randomPrice;
     
+    // Get referral source from URL
+    function getReferralSource() {
+      // Get the URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const referrer = urlParams.get('ref') || urlParams.get('source') || urlParams.get('utm_source');
+      
+      // Check for common referrers if not in URL params
+      if (!referrer) {
+        // Get the document referrer if available
+        const docReferrer = document.referrer;
+        if (docReferrer) {
+          try {
+            const referrerUrl = new URL(docReferrer);
+            const hostname = referrerUrl.hostname;
+            
+            // Check for common referrers
+            if (hostname.includes('google')) return 'google';
+            if (hostname.includes('facebook') || hostname.includes('fb')) return 'facebook';
+            if (hostname.includes('instagram')) return 'instagram';
+            if (hostname.includes('twitter') || hostname.includes('x.com')) return 'twitter';
+            if (hostname.includes('tiktok')) return 'tiktok';
+            if (hostname.includes('youtube')) return 'youtube';
+            if (hostname.includes('linkedin')) return 'linkedin';
+            
+            // Return domain name if no match
+            return hostname;
+          } catch (e) {
+            // Error parsing URL
+            return 'unknown';
+          }
+        }
+      }
+      
+      return referrer || 'direct';
+    }
+    
+    // Store referral source for the session
+    const referralSource = getReferralSource();
+    sessionStorage.setItem('referralSource', referralSource);
+    
     // Mobile Navigation Toggle
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
@@ -1411,6 +1451,7 @@
       // Combine event name with data
       const payload = {
         eventName: eventName,
+        referral_source: sessionStorage.getItem('referralSource'),
         ...data
       };
       
