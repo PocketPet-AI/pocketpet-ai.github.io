@@ -713,6 +713,32 @@
       font-size: 1rem;
     }
     
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: background 0.3s, transform 0.3s;
+      z-index: 100;
+    }
+    
+    .back-to-top:hover {
+      background: var(--primary-light);
+      transform: translateY(-3px);
+    }
+    
     /* Responsive */
     @media (max-width: 992px) {
       .hero-title {
@@ -1295,6 +1321,11 @@
     </div>
   </div>
 
+  <!-- Back to top button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
   <script>
     // Random pricing
     const prices = ['24.90', '34.90', '49.90', '99.90'];
@@ -1487,6 +1518,25 @@
       
       // Initialize reveal animation check
       reveal();
+    });
+    
+    // Back to top button functionality
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Show or hide the button depending on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.style.display = 'flex';
+      } else {
+        backToTopButton.style.display = 'none';
+      }
     });
   </script>
 </body>
