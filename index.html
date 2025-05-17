@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
+<head>  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hamster Home | The Future of Pet Companionship</title>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EL4870CD76"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EL4870CD76');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -261,16 +268,22 @@
       color: var(--primary);
       font-size: 1.3rem;
     }
-    
-    .hero-image {
+      .hero-image {
       flex: 1;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    
-    .hero-img {
+      .hero-img {
       width: 100%;
+      max-width: 500px; /* Limit width for 1:1 ratio video */
+      margin: 0 auto; /* Center the video */
+      display: block;
       border-radius: 20px;
       box-shadow: var(--shadow);
+      aspect-ratio: 1/1; /* Enforce 1:1 aspect ratio */
+      object-fit: cover; /* Ensure video fills the container */
     }
     
     .feature-badge {
@@ -299,21 +312,23 @@
       color: var(--primary);
       flex-shrink: 0; /* Prevent icon from shrinking */
     }
-    
-    /* Desktop positions */
+      /* Desktop positions - adjusted for 1:1 ratio video */
     .badge-1 {
       top: 20px;
-      left: 20px;
+      left: 50%;
+      transform: translateX(-170px); /* Positioned relative to center */
     }
     
     .badge-2 {
       bottom: 30px;
-      left: -30px;
+      left: 50%;
+      transform: translateX(-170px); /* Positioned relative to center */
     }
     
     .badge-3 {
       top: 40%;
-      right: -20px;
+      right: 50%;
+      transform: translateX(170px); /* Positioned relative to center */
     }
     
     .badge-4 {
@@ -722,8 +737,7 @@
         margin-left: 20px;
       }
     }
-    
-    @media (max-width: 768px) {
+      @media (max-width: 768px) {
       .hero-content {
         flex-direction: column;
       }
@@ -731,6 +745,10 @@
       .hero-image {
         order: -1;
         margin-bottom: 40px;
+      }
+      
+      .hero-img {
+        max-width: 90%; /* Allow video to be slightly wider on mobile */
       }
       
       /* Modify feature badge visibility and positioning for mobile */
@@ -993,45 +1011,15 @@
             <button id="main-cta" class="btn">Try it now</button>
             <a href="#how-it-works" class="btn secondary">Learn how it works</a>
           </div>
-          <p class="pricing">Starting at just <span id="price-amount" class="price">S$0.00</span>/day</p>
-        </div>
-        <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1425082661705-1834bfd09dca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800" alt="Cute hamster in its habitat" class="hero-img">
-          <div class="feature-badge badge-1">
-            <div class="badge-icon"><i class="fas fa-video"></i></div>
-            <span>Live Video</span>
-          </div>
-          <div class="feature-badge badge-2">
-            <div class="badge-icon"><i class="fas fa-utensils"></i></div>
-            <span>Smart Feeding</span>
-          </div>
-          <div class="feature-badge badge-3">
-            <div class="badge-icon"><i class="fas fa-heart"></i></div>
-            <span>Health Monitoring</span>
-          </div>
+          <p class="pricing">For just <span id="price-amount" class="price">S$0.00</span>/month</p>
+        </div>        <div class="hero-image">
+          <video class="hero-img" controls autoplay muted loop playsinline>
+            <source src="11_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
-    </div>
-  </section>
-  
-  <div class="trust-badges container">
-    <div class="trust-badge">
-      <i class="fas fa-shield-alt"></i>
-      <span>24/7 Care</span>
-    </div>
-    <div class="trust-badge">
-      <i class="fas fa-award"></i>
-      <span>Certified Handlers</span>
-    </div>
-    <div class="trust-badge">
-      <i class="fas fa-user-lock"></i>
-      <span>100% Private</span>
-    </div>
-    <div class="trust-badge">
-      <i class="fas fa-rocket"></i>
-      <span>Tech-Forward</span>
-    </div>
-  </div>
+    </div>  </section>
 
   <section class="features reveal" id="features">
     <div class="container">
@@ -1044,15 +1032,7 @@
             <i class="fas fa-utensils"></i>
           </div>
           <h3 class="feature-title">Smart Feeding</h3>
-          <p class="feature-description">Schedule or trigger real-time feeding through the app, ensuring your hamster always gets the right nutrition at the right time.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-film"></i>
-          </div>
-          <h3 class="feature-title">Daily Highlights</h3>
-          <p class="feature-description">Our AI captures the cutest and most interesting moments of your hamster's day, creating a daily highlights video you can share with friends.</p>
+          <p class="feature-description">Schedule or trigger real-time feeding through the app, ensuring the hamster always gets the right nutrition at the right time.</p>
         </div>
         
         <div class="feature-card">
@@ -1060,64 +1040,72 @@
             <i class="fas fa-broom"></i>
           </div>
           <h3 class="feature-title">Automated Cleaning</h3>
-          <p class="feature-description">Our smart habitat maintenance system keeps your pet's environment fresh and hygienic without any effort from you.</p>
+          <p class="feature-description">Our smart habitat maintenance system keeps the environment fresh and hygienic.</p>
         </div>
-        
+
         <div class="feature-card">
           <div class="feature-icon">
             <i class="fas fa-heartbeat"></i>
           </div>
           <h3 class="feature-title">Health Monitoring</h3>
-          <p class="feature-description">24/7 vital signs and behavior monitoring with instant alerts if anything seems unusual with your pet.</p>
-        </div>
-        
+          <p class="feature-description">24/7 vital signs and behavior monitoring with instant alerts if anything seems unusual with the hamster.</p>
+        </div>        
+
         <div class="feature-card">
           <div class="feature-icon">
             <i class="fas fa-video"></i>
           </div>
           <h3 class="feature-title">Live Video Feed</h3>
-          <p class="feature-description">Watch your hamster anytime with high-definition streaming and color night vision that brings you into their world, no matter the time of day or night.</p>
+          <p class="feature-description">Watch the hamster anytime with high-definition streaming and color night vision that brings you into their world, no matter the time of day or night.</p>
         </div>
-        
+
         <div class="feature-card">
           <div class="feature-icon">
             <i class="fas fa-camera-retro"></i>
           </div>
           <h3 class="feature-title">Controllable Camera</h3>
-          <p class="feature-description">Pan, tilt, and zoom your view with our 360° camera system. Get the perfect angle to watch your furry friend from anywhere in their habitat.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3 class="feature-title">Basic Insurance</h3>
-          <p class="feature-description">Every subscription includes basic pet insurance covering routine care and minor health issues at no extra cost, giving you peace of mind.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-bell"></i>
-          </div>
-          <h3 class="feature-title">Smart Notifications</h3>
-          <p class="feature-description">Get personalized alerts about your hamster's activities, mood, and important moments throughout the day.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-cube"></i>
-          </div>
-          <h3 class="feature-title">Augmented Reality</h3>
-          <p class="feature-description">Customize your hamster's habitat with virtual toys and decorations they can interact with in real time through our augmented reality system.</p>
-        </div>
+          <p class="feature-description">Pan, tilt, and zoom your view with our 360° camera system. Get the perfect angle to watch your furry friend from anywhere in it's habitat.</p>
+        </div> 
         
         <div class="feature-card">
           <div class="feature-icon">
             <i class="fas fa-microphone"></i>
           </div>
           <h3 class="feature-title">Two-Way Audio</h3>
-          <p class="feature-description">Listen and talk to your pet with our crystal-clear audio system, creating a real bond despite the distance.</p>
+          <p class="feature-description">Listen and talk to the hamster with our crystal-clear audio system, creating a real bond despite the distance.</p>
         </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h3 class="feature-title">Smart Notifications</h3>
+          <p class="feature-description">Get personalized alerts about the hamster's activities, mood, and important moments throughout the day.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-film"></i>
+          </div>
+          <h3 class="feature-title">Daily Highlights</h3>
+          <p class="feature-description">Our AI captures the cutest and most interesting moments of the hamster's day, creating a daily highlights video you can share with friends.</p>
+        </div>
+                         <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cube"></i>
+          </div>
+          <h3 class="feature-title">Customizable Habitat</h3>
+          <p class="feature-description">Personalize the hamster's living space with customizable virtual accessories and themed enclosure backgrounds using our augmented reality technology, creating a visually appealing habitat for both you and your pet.</p>
+        </div> 
+        
+         <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="feature-title">Basic Insurance</h3>
+          <p class="feature-description">Every subscription includes basic pet insurance covering routine care and minor health issues at no extra cost, giving you peace of mind.</p>
+        </div>       
+
       </div>
     </div>
   </section>
@@ -1127,21 +1115,19 @@
       <h2 class="section-title">Created by Pet Lovers, for Pet Lovers</h2>
       <p class="section-subtitle">At Hamster Home, our commitment to animal welfare drives everything we do. We're more than just a tech platform – we're a community of passionate pet enthusiasts.</p>
       
-      <div class="features-grid">
-        <div class="feature-card">
+      <div class="features-grid">        <div class="feature-card">
           <div class="feature-icon">
-            <i class="fas fa-paw"></i>
+            <i class="fas fa-heart"></i>
           </div>
           <h3 class="feature-title">Pet Lovers First</h3>
-          <p class="feature-description">Founded by dedicated pet enthusiasts who understand the deep bond between humans and animals. Our team includes veterinarians, animal behaviorists, and lifelong pet owners.</p>
+          <p class="feature-description">Founded by dedicated pet enthusiasts who understand the deep bond between humans and animals. Our team includes veterinarians, animal behavior analysts, and experienced pet owners.</p>
         </div>
-        
-        <div class="feature-card">
+          <div class="feature-card">
           <div class="feature-icon">
             <i class="fas fa-certificate"></i>
           </div>
           <h3 class="feature-title">Best Practice Standards</h3>
-          <p class="feature-description">We adhere to the highest standards in animal care, following international guidelines for pet welfare, habitat design, nutrition, and environmental enrichment.</p>
+          <p class="feature-description">We adhere to the highest standards in animal care, following guidelines from leading animal welfare organizations and insights from experienced pet owners for pet welfare, habitat design, nutrition, and environmental enrichment.</p>
         </div>
         
         <div class="feature-card">
@@ -1160,21 +1146,18 @@
       <h2 class="section-title">Who Hamster Home Is For</h2>
       <p class="section-subtitle">Perfect for modern lifestyles that desire pet companionship without the traditional limitations.</p>
       
-      <div class="audience-container">
-        <div class="audience-card">
+      <div class="audience-container">        <div class="audience-card">
           <div class="audience-icon">
-            <i class="fas fa-city"></i>
+            <i class="fas fa-home"></i>
           </div>
-          <h3>Urban Apartment Dwellers</h3>
-          <p>Limited space shouldn't mean limited joy. Perfect for those in compact urban apartments where traditional pet ownership might be challenging or restricted.</p>
-        </div>
-        
-        <div class="audience-card">
+          <h3>Pet-Restricted Homes</h3>
+          <p>Whether you're in a compact urban apartment or dealing with rental property no-pet policies, our solution lets you enjoy authentic pet companionship without space constraints or violating tenancy agreements.</p>
+        </div>          <div class="audience-card">
           <div class="audience-icon">
             <i class="fas fa-briefcase"></i>
           </div>
-          <h3>Busy Young Professionals</h3>
-          <p>For those under 35 with demanding schedules who want the emotional benefits of pet ownership without compromising their career or social commitments.</p>
+          <h3>On-the-Go Pet Lovers</h3>
+          <p>For anyone with demanding schedules who want the emotional benefits of pet ownership without compromising their career, education, or social commitments.</p>
         </div>
         
         <div class="audience-card">
@@ -1183,14 +1166,6 @@
           </div>
           <h3>Allergy Sufferers</h3>
           <p>Experience all the joy of pet companionship without the physical discomfort. Our remote interaction means zero allergen exposure while maintaining a real connection.</p>
-        </div>
-        
-        <div class="audience-card">
-          <div class="audience-icon">
-            <i class="fas fa-building"></i>
-          </div>
-          <h3>Rental Property Residents</h3>
-          <p>Living somewhere with a no-pets policy? Our solution lets you enjoy authentic pet companionship without violating any tenancy agreements.</p>
         </div>
         
         <div class="audience-card">
@@ -1208,12 +1183,11 @@
           <h3>Tech Enthusiasts</h3>
           <p>For those who love cutting-edge technology and unique experiences. Embrace the future of pet companionship with our innovative platform.</p>
         </div>
-        
-        <div class="audience-card">
+          <div class="audience-card">
           <div class="audience-icon">
             <i class="fas fa-child"></i>
           </div>
-          <h3>Kids Without Pet Permission</h3>
+          <h3>Young Animal Enthusiasts</h3>
           <p>When parents say "no pets allowed" but you still want a furry friend! Enjoy the responsibility and joy of pet ownership without changing your home situation.</p>
         </div>
       </div>
@@ -1234,7 +1208,7 @@
         
         <div class="step">
           <div class="step-number">2</div>
-          <h3 class="step-title">Meet Your Hamster</h3>
+          <h3 class="step-title">Meet The Hamster</h3>
           <p class="step-description">We'll match you with a hamster that fits your preferences.</p>
         </div>
         
@@ -1247,7 +1221,7 @@
         <div class="step">
           <div class="step-number">4</div>
           <h3 class="step-title">Start Bonding</h3>
-          <p class="step-description">Begin interacting and creating memories with your new pet.</p>
+          <p class="step-description">Begin interacting and creating fun memories.</p>
         </div>
       </div>
     </div>
@@ -1255,9 +1229,9 @@
 
   <section class="cta reveal" id="pricing">
     <div class="container">
-      <h2 class="cta-title">Ready to Meet Your Hamster?</h2>
-      <p class="cta-subtitle">Join our waiting list today and be the first to experience the future of pet companionship.</p>
-      <button id="cta-button" class="btn cta-btn">Try it now for S$<span id="price-cta">0.00</span>/day</button>
+      <h2 class="cta-title">Ready to Meet A Hamster?</h2>
+      <p class="cta-subtitle">Experience the future of pet companionship with our revolutionary smart technology.</p>
+      <button id="cta-button" class="btn cta-btn">Try it now for S$<span id="price-cta">0.00</span>/month</button>
     </div>
   </section>
 
@@ -1322,7 +1296,7 @@
 
   <script>
     // Random pricing
-    const prices = ['0.80', '1.10', '1.60', '3.30'];
+    const prices = ['24.90', '34.90', '49.90', '99.90'];
     const randomPrice = prices[Math.floor(Math.random() * prices.length)];
     document.getElementById('price-amount').textContent = `S$${randomPrice}`;
     document.getElementById('price-cta').textContent = randomPrice;
@@ -1431,17 +1405,22 @@
         }
       });
     }
-    
-    // Tracking functions
+      // GA4 Tracking functions
     function trackEvent(eventName, data) {
       console.log(`Event: ${eventName}`, data);
-      // In a real implementation, you would send this data to your analytics service
-      // Example: analytics.track(eventName, data);
+      
+      // Send event to Google Analytics 4
+      gtag('event', eventName, data);
     }
     
     // Track page view when page loads
     document.addEventListener('DOMContentLoaded', () => {
-      trackEvent('page_view', { price: randomPrice });
+      // Track price shown to user
+      trackEvent('price_impression', { 
+        price: randomPrice,
+        currency: 'SGD'
+      });
+      
       // Initialize reveal animation check
       reveal();
     });
