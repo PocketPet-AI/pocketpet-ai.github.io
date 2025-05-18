@@ -1018,7 +1018,7 @@
           <li><a href="#testimonials">Who It's For</a></li>
           <li><a href="#how-it-works">How It Works</a></li>
         </ul>
-        <button id="nav-cta" class="btn">Try it now</button>
+        <button id="nav-cta" class="btn">Try it free</button>
         <button class="hamburger" id="hamburger">
           <i class="fas fa-bars"></i>
         </button>
@@ -1031,7 +1031,7 @@
         <li><a href="#testimonials">Who It's For</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
       </ul>
-      <button id="mobile-cta" class="btn">Try it now</button>
+      <button id="mobile-cta" class="btn">Try it free</button>
     </div>
   </header>
 
@@ -1042,11 +1042,10 @@
           <h1 class="hero-title"><span>Feel the Connection</span> in Your Pocket</h1>
           <p class="hero-subtitle">Experience the emotional fulfillment of caring for a living hamster through our app, without the space constraints, time demands, or allergen concerns of traditional pet-keeping. Our technology creates genuine bonds while upholding the highest standards of animal welfare.</p>
           <div class="hero-buttons">
-            <button id="main-cta" class="btn">Try it now</button>
+            <button id="main-cta" class="btn">Try it free</button>
             <a href="#how-it-works" class="btn secondary">Learn how it works</a>
           </div>
-          <p class="pricing">Emotional companionship for just <span id="price-amount" class="price">S$0.00</span>/month</p>
-        </div>        
+        </div>
         <div class="hero-image">
           <video class="hero-img" controls autoplay muted loop playsinline>
             <source src="assets/videos/11_video.mp4" type="video/mp4">
@@ -1266,7 +1265,7 @@
     <div class="container">
       <h2 class="cta-title">Ready to Meet A Hamster?</h2>
       <p class="cta-subtitle">Experience the emotional fulfillment of pet companionship without traditional limitations.</p>
-      <button id="cta-button" class="btn cta-btn">Try it now for S$<span id="price-cta">0.00</span>/month</button>
+      <button id="cta-button" class="btn cta-btn">Try it now for free</button>
     </div>
   </section>
 
@@ -1333,13 +1332,7 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
-  <script>
-    // Random pricing
-    const prices = ['24.90', '34.90', '49.90', '99.90'];
-    const randomPrice = prices[Math.floor(Math.random() * prices.length)];
-    document.getElementById('price-amount').textContent = `S$${randomPrice}`;
-    document.getElementById('price-cta').textContent = randomPrice;
-    
+  <script>   
     // Get referral source from URL
     function getReferralSource() {
       // Get the URL parameters
@@ -1407,7 +1400,7 @@
         modal.style.display = 'block';
         mobileNav.classList.remove('active');
         hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-        trackEvent('button_click', { price: randomPrice, currency: 'SGD' });
+        trackEvent('button_click', { price: '0.0', currency: 'SGD' });
       });
     }
     
@@ -1426,7 +1419,7 @@
       button.addEventListener('click', () => {
         modal.style.display = 'block';
         // Track button click
-        trackEvent('button_click', { price: randomPrice, currency: 'SGD' });
+        trackEvent('button_click', { price: '0.0', currency: 'SGD' });
       });
     });
     
@@ -1449,7 +1442,7 @@
       
       // Track form submission
       trackEvent('form_submission', { 
-        price: randomPrice,
+        price: '0.0',
         currency: 'SGD',
         name: name,
         email: email 
@@ -1519,7 +1512,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Track price shown to user
       trackEvent('price_impression', { 
-        price: randomPrice,
+        price: '0.0',
         currency: 'SGD'
       });
       
