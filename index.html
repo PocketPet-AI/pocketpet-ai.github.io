@@ -1537,7 +1537,16 @@
       // Initialize reveal animation check
       reveal();
     });
-    
+
+    // Track page view after page has finished loading
+    window.addEventListener('load', () => {
+      // Track price shown to user
+      trackEvent('full_price_impression', { 
+        price: '0.0',
+        currency: 'SGD'
+      });
+    });
+
     // Back to top button functionality
     const backToTopButton = document.getElementById('back-to-top');
     
